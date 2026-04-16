@@ -42,8 +42,8 @@ const PRODUTOS = [
     tamanhos: ['P', 'M', 'G', 'GG', 'XGG'],
     imgs: [
       'graça.jpg',
-      'https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=900',
-      'https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=900',
+      'coração.jpg',
+      'caminho.jpg',
     ],
     estoque: true
   },
