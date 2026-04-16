@@ -62,8 +62,8 @@ const PRODUTOS = [
     },
     tamanhos: ['P', 'M', 'G', 'GG'],
     imgs: [
-      'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=900',
-      'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=900',
+      'jesusCruz.jpg',
+      'graça.jpg',
     ],
     estoque: false
   },
@@ -82,8 +82,8 @@ const PRODUTOS = [
     },
     tamanhos: ['P', 'M', 'G', 'GG', 'XGG'],
     imgs: [
-      'https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=900',
-      'https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?q=80&w=900',
+      'coração.jpg',
+      'apagar.jpg',
     ],
     estoque: true
   },
@@ -191,7 +191,7 @@ const PRODUTOS = [
 ];
 
 /* ─── WHATSAPP — altere pelo número real ─── */
-const WHATSAPP_NUM = '5588999999999';
+const WHATSAPP_NUM = '8893022426';
 
 
 /* ════════════════════════════════════════
@@ -304,101 +304,6 @@ function initFilters() {
 }
 
 
-/* ════════════════════════════════════════
-   5. CARROSSEL
-════════════════════════════════════════ */
-
-/** Renderiza os cards no carrossel */
-function renderCarousel() {
-  const track = document.getElementById('carousel-track');
-  if (!track) return;
-
-  track.innerHTML = PRODUTOS.map(p => {
-    const badgeClass = p.badgeStyle === 'gold' ? 'carousel-badge gold' : 'carousel-badge';
-    return `
-      <div class="carousel-card" data-id="${p.id}">
-        <div class="carousel-card-img">
-          ${!p.estoque ? '<div class="carousel-faixa">ESGOTADO</div>' : ''}
-          ${p.badge && p.estoque ? `<div class="${badgeClass}">${p.badge}</div>` : ''}
-          <img src="${p.imgs[0]}" alt="${p.nome}" class="${!p.estoque ? 'img-esgotada' : ''}" loading="lazy">
-        </div>
-        <div class="carousel-card-info">
-          <span class="carousel-card-cat">${p.categoria}</span>
-          <p class="carousel-card-name">${p.nome}</p>
-          <span class="carousel-card-price">R$ ${fmt(p.preco)}</span>
-          <button class="btn-ver-detalhes" onclick="openPModal('${p.id}')">VER DETALHES</button>
-        </div>
-      </div>`;
-  }).join('');
-
-  updateCarouselArrows();
-
-  /* Atualizar setas quando o usuário rola manualmente */
-  track.addEventListener('scroll', () => {
-    const cardW = track.querySelector('.carousel-card')?.offsetWidth || 300;
-    carouselIndex = Math.round(track.scrollLeft / (cardW + 20));
-    updateCarouselArrows();
-  }, { passive: true });
-}
-
-/**
- * Move o carrossel na direção indicada.
- * @param {number} dir - -1 (anterior) | 1 (próximo)
- */
-function carouselMove(dir) {
-  const track = document.getElementById('carousel-track');
-  if (!track) return;
-  const card  = track.querySelector('.carousel-card');
-  if (!card) return;
-  const step  = card.offsetWidth + 20;
-  const max   = PRODUTOS.length - 1;
-
-  carouselIndex = Math.max(0, Math.min(max, carouselIndex + dir));
-  track.scrollTo({ left: carouselIndex * step, behavior: 'smooth' });
-  updateCarouselArrows();
-}
-
-/** Habilita/desabilita as setas de navegação do carrossel */
-function updateCarouselArrows() {
-  const prev = document.getElementById('carousel-prev');
-  const next = document.getElementById('carousel-next');
-  if (prev) prev.disabled = carouselIndex <= 0;
-  if (next) next.disabled = carouselIndex >= PRODUTOS.length - 1;
-}
-
-/**
- * Drag-to-scroll no carrossel (desktop + touch).
- */
-function initCarouselDrag() {
-  const track = document.getElementById('carousel-track');
-  if (!track) return;
-
-  let isDown  = false;
-  let startX  = 0;
-  let scrollL = 0;
-
-  track.addEventListener('mousedown', e => {
-    isDown  = true;
-    track.classList.add('grabbing');
-    startX  = e.pageX - track.offsetLeft;
-    scrollL = track.scrollLeft;
-  });
-  document.addEventListener('mouseup', () => {
-    isDown = false;
-    track.classList.remove('grabbing');
-  });
-  track.addEventListener('mouseleave', () => {
-    isDown = false;
-    track.classList.remove('grabbing');
-  });
-  track.addEventListener('mousemove', e => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x    = e.pageX - track.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    track.scrollLeft = scrollL - walk;
-  });
-}
 
 
 /* ════════════════════════════════════════
