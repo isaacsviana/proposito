@@ -122,8 +122,8 @@ const PRODUTOS = [
     },
     tamanhos: ['P', 'M', 'G', 'GG'],
     imgs: [
-      'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=900',
-      'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=900',
+      'jesusCruz.jpg',
+      'jesusCruz.jpg',
     ],
     estoque: true
   },
@@ -162,8 +162,8 @@ const PRODUTOS = [
     },
     tamanhos: ['P', 'M', 'G', 'GG'],
     imgs: [
-      'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=900',
-      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=900',
+      'jesusCruz.jpg',
+      'jesusCruz.jpg',
     ],
     estoque: true
   },
@@ -183,8 +183,8 @@ const PRODUTOS = [
     },
     tamanhos: ['M', 'G', 'GG', 'XGG'],
     imgs: [
-      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=900',
-      'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=900',
+      'hjesusCruz.jpg',
+      'jesusCruz.jpg',
     ],
     estoque: true
   }
