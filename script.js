@@ -41,7 +41,7 @@ const PRODUTOS = [
     },
     tamanhos: ['P', 'M', 'G', 'GG', 'XGG'],
     imgs: [
-      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=900',
+      'graça.jpg',
       'https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=900',
       'https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=900',
     ],
