@@ -102,8 +102,8 @@ const PRODUTOS = [
     },
     tamanhos: ['M', 'G', 'GG', 'XGG'],
     imgs: [
-      'https://images.unsplash.com/photo-1554568218-0f1715e72254?q=80&w=900',
-      'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?q=80&w=900',
+      'jesusCruz.jpg',
+      'coração.jpg',
     ],
     estoque: true
   },
@@ -130,7 +130,7 @@ const PRODUTOS = [
   {
     id: 'PS06',
     nome: 'Shorts Mesh Holy',
-    categoria: 'shorts',
+    categoria: 'camisa',
     badge: 'NOVO',
     preco: 110.00,
     desc: 'Short de malha mesh com elástico reforçado e cordão ajustável. Perfeito para os dias de movimento.',
@@ -142,8 +142,8 @@ const PRODUTOS = [
     },
     tamanhos: ['P', 'M', 'G', 'GG'],
     imgs: [
-      'https://images.unsplash.com/photo-1591195853828-11db59a44f6b?q=80&w=900',
-      'https://images.unsplash.com/photo-1517438476312-10d79c077509?q=80&w=900',
+      'graça.jpg',
+      'caminhp.jpg',
     ],
     estoque: true
   },
