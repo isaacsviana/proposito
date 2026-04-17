@@ -6,32 +6,43 @@
     <title>Propósito Streetwear | Fé em Movimento</title>
     <meta name="description" content="Streetwear Cristão de Morada Nova/CE. Design urbano, mensagem eterna. Fé em movimento.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="top-bar">
-        <span class="top-bar-text">"VÓS SOIS A LUZ DO MUNDO" — MT 5:14</span>
-        <span class="top-bar-sep">|</span>
-       
+        <div class="top-bar-marquee">
+            <span>"VÓS SOIS A LUZ DO MUNDO" — MT 5:14</span>
+            <span class="top-bar-sep">✦</span>
+            <span>FRETE COMBINADO VIA WHATSAPP</span>
+            <span class="top-bar-sep">✦</span>
+            <span>EST. 2025 · MORADA NOVA/CE</span>
+            <span class="top-bar-sep">✦</span>
+            <span>"VÓS SOIS A LUZ DO MUNDO" — MT 5:14</span>
+            <span class="top-bar-sep">✦</span>
+            <span>FRETE COMBINADO VIA WHATSAPP</span>
+            <span class="top-bar-sep">✦</span>
+            <span>EST. 2025 · MORADA NOVA/CE</span>
+            <span class="top-bar-sep">✦</span>
+        </div>
     </div>
 
     <header id="header">
         <div class="container nav-container">
-            <div class="logo">
+            <a href="#" class="logo">
                 <span class="logo-cross">✝</span>
                 <span class="logo-main">PROPÓSITO</span>
-          
-            </div>
+                <span class="logo-sub">SW</span>
+            </a>
             <nav class="nav-menu" id="nav-menu">
-                <a href="#catalogo">CATÁLOGO</a>
-                <a href="#sobre">MANIFESTO</a>
-                
+                <a href="#catalogo" onclick="closeMenuMobile()">CATÁLOGO</a>
+                <a href="#sobre" onclick="closeMenuMobile()">MANIFESTO</a>
+                <a href="https://wa.me/558893022426" target="_blank" class="nav-wpp">WHATSAPP</a>
             </nav>
             <div class="nav-actions">
                 <button class="cart-trigger" onclick="toggleCart()" aria-label="Abrir carrinho">
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                    <span>CARRINHO</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                    <span class="cart-label">CARRINHO</span>
                     <span class="cart-badge" id="cart-count">0</span>
                 </button>
                 <button class="menu-toggle" id="menu-toggle" onclick="toggleMenu()" aria-label="Menu">
@@ -41,6 +52,7 @@
         </div>
     </header>
 
+    <!-- HERO -->
     <section class="hero" id="hero">
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
@@ -56,14 +68,17 @@
                 <a href="#sobre" class="btn-secondary">NOSSO MANIFESTO</a>
             </div>
         </div>
+       
     </section>
 
+    <!-- DESTAQUE -->
     <section class="weekly-highlight" id="destaque">
         <div class="container">
             <div class="highlight-card">
                 <div class="highlight-visual">
                     <img src="https://images.unsplash.com/photo-1554568218-0f1715e72254?q=80&w=900" alt="Drop Metanoia">
                     <div class="highlight-tag">NOVA COLEÇÃO</div>
+                    <div class="highlight-number">01</div>
                 </div>
                 <div class="highlight-info">
                     <span class="badge-new">✦ NOVO DROP</span>
@@ -73,39 +88,60 @@
                         <span>"...sede transformados pela renovação da vossa mente"</span>
                         <strong>— Romanos 12:2</strong>
                     </div>
-                    <a href="#catalogo" class="btn-primary">EU QUERO</a>
+                    <a href="#catalogo" class="btn-primary">EU QUERO ESSA PEÇA</a>
                 </div>
             </div>
         </div>
     </section>
 
-   
+    <!-- VERSÍCULO FLUTUANTE -->
+    <div class="verse-strip">
+        <div class="verse-strip-inner">
+            <span>"NÃO VOS CONFORMEIS COM ESTE SÉCULO" — RM 12:2</span>
+            <span class="v-sep">✦</span>
+            <span>"TUDO POSSO NAQUELE QUE ME FORTALECE" — FP 4:13</span>
+            <span class="v-sep">✦</span>
+            <span>"FÉ SEM OBRAS É MORTA" — TG 2:26</span>
+            <span class="v-sep">✦</span>
+            <span>"NÃO VOS CONFORMEIS COM ESTE SÉCULO" — RM 12:2</span>
+            <span class="v-sep">✦</span>
+            <span>"TUDO POSSO NAQUELE QUE ME FORTALECE" — FP 4:13</span>
+            <span class="v-sep">✦</span>
+            <span>"FÉ SEM OBRAS É MORTA" — TG 2:26</span>
+            <span class="v-sep">✦</span>
         </div>
-    </section>
+    </div>
 
+    <!-- CATÁLOGO -->
     <main class="catalog-section container" id="catalogo">
         <div class="section-header">
-            <h2 class="section-title">CATÁLOGO</h2>
+            <div class="section-title-wrap">
+                <h2 class="section-title">CATÁLOGO</h2>
+                <p class="section-sub">PEÇAS QUE PREGAM SEM FALAR</p>
+            </div>
             <div class="filter-row" id="filter-row">
                 <button class="filter-btn active" data-filter="all">TODOS</button>
                 <button class="filter-btn" data-filter="camiseta">CAMISETAS</button>
                 <button class="filter-btn" data-filter="hoodie">HOODIES</button>
-                
             </div>
         </div>
-        <div class="products-grid" id="grid-produtos">
-             </div>
+        <div class="products-grid" id="grid-produtos"></div>
     </main>
 
+    <!-- FAIXA VERSÍCULO -->
     <div class="verse-banner">
         <div class="container">
-            <blockquote class="verse-banner-text">
-                "Não me envergonho do Evangelho, pois é o poder de Deus para a salvação de todo aquele que crê."
-            </blockquote>
-            <cite>— Romanos 1:16</cite>
+            <div class="verse-banner-inner">
+                <div class="verse-banner-cross">✝</div>
+                <blockquote class="verse-banner-text">
+                    "Não me envergonho do Evangelho, pois é o poder de Deus para a salvação de todo aquele que crê."
+                </blockquote>
+                <cite>— Romanos 1:16</cite>
+            </div>
         </div>
     </div>
 
+    <!-- MANIFESTO -->
     <section class="about" id="sobre">
         <div class="container">
             <div class="manifesto-grid">
@@ -118,33 +154,53 @@
                     <p>A <strong>Propósito Streetwear</strong> transcende o tecido. Somos um movimento nascido no coração de Morada Nova para vestir uma geração que não se conforma com este sistema.</p>
                     <p>Unimos a estética <em>Oversized</em> e o minimalismo industrial à força das Escrituras. Cada drop é uma ferramenta de evangelismo urbano.</p>
                     <div class="manifesto-stats">
-                        <div class="stat-item"><span class="stat-num">2025</span><span class="stat-label">Fundação</span></div>
-                        <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Identidade</span></div>
+                        <div class="stat-item">
+                            <span class="stat-num">2025</span>
+                            <span class="stat-label">Fundação</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">100%</span>
+                            <span class="stat-label">Identidade</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">∞</span>
+                            <span class="stat-label">Propósito</span>
+                        </div>
                     </div>
-                    <a href="https://www.instagram.com/propositosw" target="_blank" class="btn-outline-white">SEGUIR NO INSTAGRAM</a>
+                    <a href="https://www.instagram.com/propositosw" target="_blank" class="btn-outline-white">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        @PROPOSITOSW
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container footer-grid">
             <div class="footer-brand">
                 <div class="footer-logo">✝ PROPÓSITO SW</div>
                 <p>Fé em Movimento.<br>Morada Nova / CE</p>
                 <div class="footer-social">
-                    <a href="https://www.instagram.com/propositosw" target="_blank" class="social-link">@propositosw</a>
+                    <a href="https://www.instagram.com/propositosw" target="_blank" class="social-link">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        @propositosw
+                    </a>
                 </div>
             </div>
             <div class="footer-links">
                 <h4>NAVEGAÇÃO</h4>
-                <a href="#colecao">Coleções</a>
                 <a href="#catalogo">Catálogo</a>
+                <a href="#destaque">Destaques</a>
                 <a href="#sobre">Manifesto</a>
             </div>
             <div class="footer-links">
                 <h4>ATENDIMENTO</h4>
-                <a href="https://wa.me/8893022426" target="_blank">WhatsApp</a>
+                <a href="https://wa.me/558893022426" target="_blank">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp
+                </a>
                 <span>Morada Nova / CE</span>
             </div>
         </div>
@@ -156,14 +212,15 @@
         </div>
     </footer>
 
+    <!-- MODAL PRODUTO -->
     <div id="product-modal" class="pmodal-overlay" onclick="closePModalOutside(event)">
         <div class="pmodal-content">
             <button class="pmodal-close" onclick="closePModal()">✕</button>
             <div class="pmodal-gallery">
                 <div class="gallery-main">
-                    <button class="gallery-btn" onclick="galleryPrev()">❮</button>
+                    <button class="gallery-btn gallery-prev" onclick="galleryPrev()">❮</button>
                     <img id="gallery-main-img" src="" alt="Produto">
-                    <button class="gallery-btn" onclick="galleryNext()">❯</button>
+                    <button class="gallery-btn gallery-next" onclick="galleryNext()">❯</button>
                     <div class="gallery-dots" id="gallery-dots"></div>
                 </div>
                 <div class="gallery-thumbs" id="gallery-thumbs"></div>
@@ -179,18 +236,22 @@
                     <div class="sizes-grid" id="pmodal-sizes-grid"></div>
                 </div>
                 <button class="btn-pmodal-buy" onclick="addFromModal()">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
                     ADICIONAR AO CARRINHO
                 </button>
             </div>
         </div>
     </div>
 
+    <!-- MODAL CARRINHO -->
     <div id="cart-modal" class="modal-overlay" onclick="closeCartOutside(event)">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>CARRINHO</h2>
-                <button class="btn-close" onclick="toggleCart()">✕ FECHAR</button>
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                    CARRINHO
+                </h2>
+                <button class="btn-close" onclick="toggleCart()">✕</button>
             </div>
             <div id="cart-items-list" class="cart-items"></div>
             <div class="modal-footer">
@@ -198,17 +259,25 @@
                     <span>SUBTOTAL</span>
                     <span id="cart-total">R$ 0,00</span>
                 </div>
-                <p class="cart-info">Frete combinado pelo WhatsApp após o pedido</p>
-                <button class="btn-whatsapp" onclick="enviarZap()">FINALIZAR NO WHATSAPP</button>
+                <p class="cart-info">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    Frete combinado pelo WhatsApp após o pedido
+                </p>
+                <button class="btn-whatsapp" onclick="enviarZap()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    FINALIZAR PELO WHATSAPP
+                </button>
                 <button class="btn-clear" onclick="promptClearCart()">LIMPAR CARRINHO</button>
             </div>
         </div>
     </div>
 
+    <!-- MODAL CONFIRMAÇÃO -->
     <div id="confirm-modal" class="confirm-overlay">
         <div class="confirm-box">
-            <h3>LIMPAR CARRINHO?</h3>
-            <p>Todos os itens serão removidos do seu carrinho.</p>
+            <div class="confirm-icon">🗑</div>
+            <h3 class="confirm-title">LIMPAR CARRINHO?</h3>
+            <p class="confirm-desc">Todos os itens serão removidos do seu carrinho.</p>
             <div class="confirm-actions">
                 <button class="confirm-btn-cancel" onclick="closeConfirmModal()">CANCELAR</button>
                 <button class="confirm-btn-ok" onclick="confirmClearCart()">SIM, LIMPAR</button>
