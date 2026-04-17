@@ -14,7 +14,7 @@ const PRODUTOS = [
     categoria: 'camiseta',
     badge: 'MAIS VENDIDO',
     imgs: [
-      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800',
+      'jesusCruz.jpg',
       'https://images.unsplash.com/photo-1554568218-0f1715e72254?q=80&w=800'
     ],
     desc: 'Peça oversized em malha pesada 100% algodão. Estampa serigrafada com base bíblica, para quem vive a Palavra sem se envergonhar.',
@@ -31,7 +31,7 @@ const PRODUTOS = [
     categoria: 'hoodie',
     badge: null,
     imgs: [
-      'https://images.unsplash.com/photo-1556821840-3a63f15732ce?q=80&w=800'
+      'graça.jpg'
     ],
     desc: 'Moletom premium com fleece interno. O Leão de Judá representado em design urbano exclusivo. Peça para as noites frias e a fé quente.',
     verso: '"O leão da tribo de Judá venceu" — Ap 5:5',
@@ -47,8 +47,8 @@ const PRODUTOS = [
     categoria: 'camiseta',
     badge: 'NOVO',
     imgs: [
-      'https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?q=80&w=800',
-      'https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=800'
+      'coração.jpg',
+      'coração.jpg'
     ],
     desc: 'A renovação da mente em branco absoluto. Drop minimalista, corte regular, mensagem maximalista. Metanoia: transformação profunda.',
     verso: '"Sede transformados pela renovação da mente" — Rm 12:2',
@@ -64,7 +64,7 @@ const PRODUTOS = [
     categoria: 'camiseta',
     badge: null,
     imgs: [
-      'https://images.unsplash.com/photo-1562157873-818bc0726f68?q=80&w=800'
+      'apagar.jpg'
     ],
     desc: 'Lavagem especial sand wash que dá textura vintage única a cada peça. Nenhuma é igual. Assim como ninguém é igual a você.',
     verso: '"Buscai primeiro o Reino de Deus" — Mt 6:33',
@@ -80,7 +80,7 @@ const PRODUTOS = [
     categoria: 'camiseta',
     badge: null,
     imgs: [
-      'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=800'
+      'caminho.jpg'
     ],
     desc: 'O princípio e o fim em uma só peça. Design gráfico minimal com tipografia brutalista. Para quem conhece o Alfa e o Ômega.',
     verso: '"Eu sou o Alfa e o Ômega" — Ap 1:8',
@@ -96,7 +96,7 @@ const PRODUTOS = [
     categoria: 'camiseta',
     badge: 'NOVO',
     imgs: [
-      'https://images.unsplash.com/photo-1591195853828-11db59a44f43?q=80&w=800'
+      'graça.jpg'
     ],
     desc: 'Shorts mesh respirável para quem move o corpo com propósito. Bolsos utilitários, elastico ajustável, identidade cristã.',
     verso: '"Glorificai, pois, a Deus no vosso corpo" — 1Co 6:20',
@@ -112,7 +112,7 @@ const PRODUTOS = [
     categoria: 'camiseta',
     badge: null,
     imgs: [
-      'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800'
+      'caminho.jpg'
     ],
     desc: 'Longline com corte estendido e acabamento acid wash exclusivo. A graça de Deus no estilo mais autêntico do streetwear nordestino.',
     verso: '"Pela graça sois salvos, mediante a fé" — Ef 2:8',
@@ -128,7 +128,7 @@ const PRODUTOS = [
     categoria: 'hoodie',
     badge: 'PRÉ-VENDA',
     imgs: [
-      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=800'
+      'jesus.jpg'
     ],
     desc: 'Nosso hoodie mais denso e premium. Para os dias frios do Cariri e os corações quentes no Evangelho. Pré-venda exclusiva — envio em 15 dias.',
     verso: '"Não me envergonho do Evangelho" — Rm 1:16',
