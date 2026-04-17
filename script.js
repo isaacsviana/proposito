@@ -1,503 +1,379 @@
 /* =============================================
-   PROPÓSITO STREETWEAR — script.js v2.0
+   PROPÓSITO STREETWEAR — script.js v3.0
    Fé em Movimento
-   =============================================
-
-   Módulos:
-   1. DADOS (produtos)
-   2. ESTADO (carrinho, filtro, modal)
-   3. INIT
-   4. CATÁLOGO (grid + filtros)
-   5. CARROSSEL (scroll snap + drag + botões)
-   6. MODAL DE PRODUTO (galeria + swipe + tamanhos)
-   7. CARRINHO (adicionar, remover, render)
-   8. MODAL CONFIRMAÇÃO (limpar carrinho)
-   9. MENU MOBILE
-   10. EFEITOS (header scroll, hero parallax, fade-in)
-   11. TOAST
-   12. ACESSIBILIDADE (ESC para fechar modais)
    ============================================= */
 
-
-/* ════════════════════════════════════════
-   1. DADOS DOS PRODUTOS
-   Adicione múltiplas imagens em "imgs" para
-   a galeria do modal de detalhes.
-════════════════════════════════════════ */
+// ─── PRODUTOS ───
+// Para trocar imagens: substitua a URL pelo caminho do arquivo local (ex: 'fotos/camisa.jpg')
 const PRODUTOS = [
   {
     id: 'PS01',
     nome: 'Camiseta Exodus',
+    subtitulo: 'Black Edition',
+    preco: 89.90,
     categoria: 'camiseta',
     badge: 'MAIS VENDIDO',
-    badgeStyle: 'gold',
-    preco: 89.90,
-    desc: 'Corte oversized de inspiração urbana. Estampa exclusiva com referência ao livro do Êxodo — a travessia, a fé, a liberdade.',
-    detalhes: {
-      'Tecido':    'Cotton 100% — Fio 30',
-      'Tipo':      'Unissex',
-      'Estampa':   'Serigrafia',
-      'Origem':    'Nacional',
-    },
-    tamanhos: ['P', 'M', 'G', 'GG', 'XGG'],
     imgs: [
-      'graça.jpg',
-      'coração.jpg',
-      'caminho.jpg',
+      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800',
+      'https://images.unsplash.com/photo-1554568218-0f1715e72254?q=80&w=800'
     ],
+    desc: 'Peça oversized em malha pesada 100% algodão. Estampa serigrafada com base bíblica, para quem vive a Palavra sem se envergonhar.',
+    verso: '"E não vos conformeis com este século" — Rm 12:2',
+    material: '100% Algodão 240g',
+    fit: 'Oversized',
     estoque: true
   },
   {
     id: 'PS02',
     nome: 'Hoodie Lion King',
+    subtitulo: 'Graphite',
+    preco: 189.90,
     categoria: 'hoodie',
     badge: null,
-    preco: 189.90,
-    desc: 'Moletom premium com carapuço e bolso canguru. Representação do Leão de Judá em bordado exclusivo na manga.',
-    detalhes: {
-      'Tecido':    'Moletom 80% algodão, 20% poliéster',
-      'Tipo':      'Unissex',
-      'Estampa':   'Bordado + Serigrafia',
-      'Origem':    'Nacional',
-    },
-    tamanhos: ['P', 'M', 'G', 'GG'],
     imgs: [
-      'jesusCruz.jpg',
-      'graça.jpg',
+      'https://images.unsplash.com/photo-1556821840-3a63f15732ce?q=80&w=800'
     ],
+    desc: 'Moletom premium com fleece interno. O Leão de Judá representado em design urbano exclusivo. Peça para as noites frias e a fé quente.',
+    verso: '"O leão da tribo de Judá venceu" — Ap 5:5',
+    material: '80% Algodão / 20% Poliéster 380g',
+    fit: 'Oversized',
     estoque: false
   },
   {
     id: 'PS03',
     nome: 'T-Shirt Metanoia',
+    subtitulo: 'White Drop',
+    preco: 79.90,
     categoria: 'camiseta',
     badge: 'NOVO',
-    preco: 79.90,
-    desc: 'Metanoia — transformação da mente. Camiseta minimalista com tipografia distressed e versículo no interior da gola.',
-    detalhes: {
-      'Tecido':    'Algodão Penteado — Fio 40',
-      'Tipo':      'Unissex',
-      'Estampa':   'Serigrafia',
-      'Origem':    'Nacional',
-    },
-    tamanhos: ['P', 'M', 'G', 'GG', 'XGG'],
     imgs: [
-      'coração.jpg',
-      'apagar.jpg',
+      'https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?q=80&w=800',
+      'https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=800'
     ],
+    desc: 'A renovação da mente em branco absoluto. Drop minimalista, corte regular, mensagem maximalista. Metanoia: transformação profunda.',
+    verso: '"Sede transformados pela renovação da mente" — Rm 12:2',
+    material: '100% Algodão 180g',
+    fit: 'Regular',
     estoque: true
   },
   {
     id: 'PS04',
     nome: 'Oversized Kingdom',
+    subtitulo: 'Sand Wash',
+    preco: 95.00,
     categoria: 'camiseta',
     badge: null,
-    preco: 95.00,
-    desc: 'Corte oversize extremo com lavagem especial sand wash. Estampa Kingdom — o reino não é deste mundo.',
-    detalhes: {
-      'Tecido':    'Algodão Cru — Fio 30',
-      'Tipo':      'Unissex',
-      'Estampa':   'Silk',
-      'Origem':    'Nacional',
-    },
-    tamanhos: ['M', 'G', 'GG', 'XGG'],
     imgs: [
-      'jesusCruz.jpg',
-      'coração.jpg',
+      'https://images.unsplash.com/photo-1562157873-818bc0726f68?q=80&w=800'
     ],
+    desc: 'Lavagem especial sand wash que dá textura vintage única a cada peça. Nenhuma é igual. Assim como ninguém é igual a você.',
+    verso: '"Buscai primeiro o Reino de Deus" — Mt 6:33',
+    material: '100% Algodão 220g — Sand Wash',
+    fit: 'Oversized',
     estoque: true
   },
   {
     id: 'PS05',
     nome: 'Alpha & Omega',
+    subtitulo: 'Classic Black',
+    preco: 89.90,
     categoria: 'camiseta',
     badge: null,
-    preco: 89.90,
-    desc: 'O princípio e o fim. Camiseta clássica com tipografia Bebas e contraste black & white. Peça atemporal do movimento.',
-    detalhes: {
-      'Tecido':    'Cotton 100% — Fio 30',
-      'Tipo':      'Unissex',
-      'Estampa':   'Serigrafia',
-      'Origem':    'Nacional',
-    },
-    tamanhos: ['P', 'M', 'G', 'GG'],
     imgs: [
-      'jesusCruz.jpg',
-      'jesusCruz.jpg',
+      'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=800'
     ],
+    desc: 'O princípio e o fim em uma só peça. Design gráfico minimal com tipografia brutalista. Para quem conhece o Alfa e o Ômega.',
+    verso: '"Eu sou o Alfa e o Ômega" — Ap 1:8',
+    material: '100% Algodão 240g',
+    fit: 'Oversized',
     estoque: true
   },
   {
     id: 'PS06',
     nome: 'Shorts Mesh Holy',
-    categoria: 'camisa',
-    badge: 'NOVO',
+    subtitulo: 'Black',
     preco: 110.00,
-    desc: 'Short de malha mesh com elástico reforçado e cordão ajustável. Perfeito para os dias de movimento.',
-    detalhes: {
-      'Tecido':    'Dry-Fit Mesh 100% Poliéster',
-      'Tipo':      'Masculino',
-      'Estampa':   'Bordado',
-      'Origem':    'Nacional',
-    },
-    tamanhos: ['P', 'M', 'G', 'GG'],
+    categoria: 'camiseta',
+    badge: 'NOVO',
     imgs: [
-      'graça.jpg',
-      'caminhp.jpg',
+      'https://images.unsplash.com/photo-1591195853828-11db59a44f43?q=80&w=800'
     ],
+    desc: 'Shorts mesh respirável para quem move o corpo com propósito. Bolsos utilitários, elastico ajustável, identidade cristã.',
+    verso: '"Glorificai, pois, a Deus no vosso corpo" — 1Co 6:20',
+    material: '100% Poliéster Mesh',
+    fit: 'Oversized',
     estoque: true
   },
   {
     id: 'PS07',
     nome: 'Longline Grace',
+    subtitulo: 'Acid Wash',
+    preco: 120.00,
     categoria: 'camiseta',
     badge: null,
-    preco: 120.00,
-    desc: 'Camiseta longline com efeito acid wash único — cada peça é diferente. Estampa Grace na costa toda.',
-    detalhes: {
-      'Tecido':    'Algodão Acid Wash — Fio 30',
-      'Tipo':      'Unissex',
-      'Estampa':   'Serigrafia',
-      'Origem':    'Nacional',
-    },
-    tamanhos: ['P', 'M', 'G', 'GG'],
     imgs: [
-      'jesusCruz.jpg',
-      'jesusCruz.jpg',
+      'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=800'
     ],
+    desc: 'Longline com corte estendido e acabamento acid wash exclusivo. A graça de Deus no estilo mais autêntico do streetwear nordestino.',
+    verso: '"Pela graça sois salvos, mediante a fé" — Ef 2:8',
+    material: '100% Algodão 220g — Acid Wash',
+    fit: 'Longline',
     estoque: true
   },
   {
     id: 'PS08',
     nome: 'Hoodie Romanos',
+    subtitulo: 'Dark Drop',
+    preco: 199.90,
     categoria: 'hoodie',
     badge: 'PRÉ-VENDA',
-    badgeStyle: 'gold',
-    preco: 199.90,
-    desc: 'Nossa peça mais aguardada. Moletom premium com Romanos 1:16 em toda a manga direita. Disponível em pré-venda.',
-    detalhes: {
-      'Tecido':    'Moletom 80% algodão, 20% poliéster',
-      'Tipo':      'Unissex',
-      'Estampa':   'Bordado',
-      'Origem':    'Nacional',
-    },
-    tamanhos: ['M', 'G', 'GG', 'XGG'],
     imgs: [
-      'hjesusCruz.jpg',
-      'jesusCruz.jpg',
+      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=800'
     ],
+    desc: 'Nosso hoodie mais denso e premium. Para os dias frios do Cariri e os corações quentes no Evangelho. Pré-venda exclusiva — envio em 15 dias.',
+    verso: '"Não me envergonho do Evangelho" — Rm 1:16',
+    material: '80% Algodão / 20% Poliéster 420g',
+    fit: 'Oversized',
     estoque: true
   }
 ];
 
-/* ─── WHATSAPP — altere pelo número real ─── */
-const WHATSAPP_NUM = '8893022426';
+// ─── ESTADO ───
+let cart = [];
+try { cart = JSON.parse(localStorage.getItem('psw_cart_v5')) || []; } catch(e) { cart = []; }
 
-
-/* ════════════════════════════════════════
-   2. ESTADO GLOBAL
-════════════════════════════════════════ */
-let cart       = JSON.parse(localStorage.getItem('psw_cart_v5')) || [];
 let activeFilter = 'all';
+const WHATSAPP_NUM = '558893022426';
 
-/* Estado do modal de produto */
-let currentProduct  = null;   // objeto do produto aberto
-let currentImgIndex = 0;      // índice da imagem atual na galeria
-let selectedSize    = null;    // tamanho selecionado no modal
+// Modal produto
+let currentProduct = null;
+let currentGalleryIndex = 0;
 
-/* Estado do carrossel */
-let carouselIndex = 0;
-
-
-/* ════════════════════════════════════════
-   3. INICIALIZAÇÃO
-════════════════════════════════════════ */
+// ─── INICIALIZAÇÃO ───
 document.addEventListener('DOMContentLoaded', () => {
-  renderCatalog('all');
-  renderCarousel();
+  renderProducts('all');
   updateCartUI();
-  initFilters();
+  initScrollEffects();
   initHeaderScroll();
   initHeroBg();
-  initScrollFadeIn();
-  initCarouselDrag();
-  initNavLinks();
+  initFilters();
 });
 
-
-/* ════════════════════════════════════════
-   4. CATÁLOGO — grid com filtros
-════════════════════════════════════════ */
-
-/**
- * Renderiza os cards do catálogo filtrando por categoria.
- * @param {string} filter - 'all' | 'camiseta' | 'hoodie' | 'shorts'
- */
-function renderCatalog(filter) {
+// ─── RENDER PRODUTOS ───
+function renderProducts(filter) {
   const grid = document.getElementById('grid-produtos');
-  const list = filter === 'all' ? PRODUTOS : PRODUTOS.filter(p => p.categoria === filter);
+  const filtered = filter === 'all' ? PRODUTOS : PRODUTOS.filter(p => p.categoria === filter);
 
-  if (!list.length) {
+  if (filtered.length === 0) {
     grid.innerHTML = `
-      <div style="grid-column:1/-1;text-align:center;padding:80px 20px;color:#444;">
-        <p style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;margin-bottom:8px;">EM BREVE</p>
-        <p style="font-size:11px;letter-spacing:2px;color:#333;">NOVIDADES CHEGANDO</p>
+      <div style="grid-column:1/-1; text-align:center; padding:80px 20px; color:#444;">
+        <p style="font-family:'Bebas Neue',sans-serif; font-size:32px; letter-spacing:4px; margin-bottom:12px;">NENHUM PRODUTO</p>
+        <p style="font-size:11px; letter-spacing:3px;">EM BREVE NOVIDADES</p>
       </div>`;
     return;
   }
 
-  grid.innerHTML = list.map(p => buildCatalogCard(p)).join('');
+  grid.innerHTML = filtered.map(p => buildCard(p)).join('');
 
-  /* Animação de entrada escalonada */
-  grid.querySelectorAll('.card').forEach((el, i) => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
+  grid.querySelectorAll('.card').forEach((card, i) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
     setTimeout(() => {
-      el.style.transition = 'opacity 0.45s ease, transform 0.45s ease, border-color 0.3s, transform 0.3s';
-      el.style.opacity = '1';
-      el.style.transform = 'translateY(0)';
+      card.style.transition = 'opacity 0.45s ease, transform 0.45s ease, border-color 0.25s, transform 0.25s';
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
     }, i * 70);
   });
 }
 
-/**
- * Gera o HTML de um card do catálogo.
- */
-function buildCatalogCard(p) {
-  const badgeClass = p.badgeStyle === 'gold' ? 'card-badge gold' : 'card-badge';
+function buildCard(p) {
+  const mainImg = p.imgs ? p.imgs[0] : (p.img || 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800');
   return `
     <div class="card" data-id="${p.id}">
-      <div class="card-img-wrap">
+      <div class="card-img-wrap" onclick="openPModal('${p.id}')">
         ${!p.estoque ? '<div class="faixa-esgotado">ESGOTADO</div>' : ''}
-        ${p.badge && p.estoque ? `<div class="${badgeClass}">${p.badge}</div>` : ''}
-        <img src="${p.imgs[0]}" alt="${p.nome}" class="${!p.estoque ? 'img-esgotada' : ''}" loading="lazy"
-             onerror="this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800'">
+        ${p.badge && p.estoque ? `<div class="card-badge">${p.badge}</div>` : ''}
+        <img 
+          src="${mainImg}" 
+          alt="${p.nome}"
+          class="${!p.estoque ? 'img-esgotada' : ''}"
+          loading="lazy"
+          onerror="this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800'"
+        >
+        ${p.estoque ? '<div class="card-hover-overlay"><span class="card-hover-text">VER DETALHES</span></div>' : ''}
       </div>
       <div class="card-info">
-        <span class="card-category">${p.categoria}</span>
+        <span class="card-category">${p.categoria.toUpperCase()}</span>
         <h3>${p.nome}</h3>
-        <span class="price">R$ ${fmt(p.preco)}</span>
-
-        <!-- Select compacto — feedback -->
+        ${p.subtitulo ? `<span class="card-sub">${p.subtitulo}</span>` : ''}
+        <span class="price">R$ ${p.preco.toFixed(2).replace('.', ',')}</span>
         <select id="size-${p.id}" class="size-select" ${!p.estoque ? 'disabled' : ''} aria-label="Tamanho">
           <option value="">— TAMANHO —</option>
-          ${p.tamanhos.map(t => `<option value="${t}">${t}</option>`).join('')}
+          <option value="P">P</option>
+          <option value="M">M</option>
+          <option value="G">G</option>
+          <option value="GG">GG</option>
+          <option value="XGG">XGG</option>
         </select>
-
-        <button class="btn-buy" onclick="addToCart('${p.id}')" ${!p.estoque ? 'disabled' : ''}>
-          ${p.estoque ? 'ADICIONAR AO CARRINHO' : 'ESGOTADO'}
-        </button>
+        <button 
+          class="btn-buy"
+          onclick="addToCart('${p.id}')"
+          ${!p.estoque ? 'disabled' : ''}
+          aria-label="Adicionar ${p.nome} ao carrinho"
+        >${p.estoque ? 'ADICIONAR AO CARRINHO' : 'ESGOTADO'}</button>
       </div>
-    </div>`;
+    </div>
+  `;
 }
 
-/** Inicializa os botões de filtro */
+// ─── FILTROS ───
 function initFilters() {
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      activeFilter = btn.dataset.filter;
-      renderCatalog(activeFilter);
+      activeFilter = btn.getAttribute('data-filter');
+      renderProducts(activeFilter);
     });
   });
 }
 
-
-
-
-/* ════════════════════════════════════════
-   6. MODAL DE PRODUTO
-   Abre com galeria de imagens, swipe e info
-════════════════════════════════════════ */
-
-/**
- * Abre o modal de detalhes de um produto.
- * @param {string} id - ID do produto
- */
+// ─── MODAL PRODUTO ───
 function openPModal(id) {
   const p = PRODUTOS.find(x => x.id === id);
   if (!p) return;
+  currentProduct = p;
+  currentGalleryIndex = 0;
 
-  currentProduct  = p;
-  currentImgIndex = 0;
-  selectedSize    = null;
+  const imgs = p.imgs || [p.img || 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800'];
 
-  /* Preencher dados textuais */
-  document.getElementById('pmodal-category').textContent = p.categoria.toUpperCase();
-  document.getElementById('pmodal-title').textContent    = p.nome;
-  document.getElementById('pmodal-price').textContent    = `R$ ${fmt(p.preco)}`;
-  document.getElementById('pmodal-desc').textContent     = p.desc;
+  // Galeria
+  const mainImg = document.getElementById('gallery-main-img');
+  mainImg.src = imgs[0];
+  mainImg.onerror = () => mainImg.src = 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800';
 
-  /* Detalhes (tecido, tipo, etc.) */
-  const detailsEl = document.getElementById('pmodal-details');
-  detailsEl.innerHTML = Object.entries(p.detalhes).map(([k, v]) =>
-    `<div class="pmodal-detail-row"><span>${k.toUpperCase()}</span><span>${v}</span></div>`
-  ).join('');
+  // Dots
+  const dotsEl = document.getElementById('gallery-dots');
+  dotsEl.innerHTML = imgs.length > 1 ? imgs.map((_, i) =>
+    `<button class="gallery-dot ${i === 0 ? 'active' : ''}" onclick="galleryGoTo(${i})"></button>`
+  ).join('') : '';
 
-  /* Tamanhos */
-  const sizesGrid = document.getElementById('pmodal-sizes-grid');
-  sizesGrid.innerHTML = p.tamanhos.map(t =>
-    `<button class="size-btn" onclick="selectSize('${t}')" data-size="${t}">${t}</button>`
-  ).join('');
+  // Thumbs
+  const thumbsEl = document.getElementById('gallery-thumbs');
+  thumbsEl.innerHTML = imgs.length > 1 ? imgs.map((src, i) =>
+    `<img class="gallery-thumb ${i === 0 ? 'active' : ''}" src="${src}" alt="Thumb ${i+1}" onclick="galleryGoTo(${i})"
+      onerror="this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800'">`
+  ).join('') : '';
 
-  /* Galeria */
-  renderGallery(p.imgs);
-
-  /* Botão de compra */
-  const buyBtn = document.getElementById('btn-pmodal-buy');
-  buyBtn.disabled = !p.estoque;
-  buyBtn.textContent = p.estoque ? 'ADICIONAR AO CARRINHO' : 'PRODUTO ESGOTADO';
-  if (p.estoque) {
-    buyBtn.innerHTML = `
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-      ADICIONAR AO CARRINHO`;
+  // Setas
+  const prevBtn = document.querySelector('.gallery-prev');
+  const nextBtn = document.querySelector('.gallery-next');
+  if (prevBtn && nextBtn) {
+    prevBtn.style.display = imgs.length > 1 ? '' : 'none';
+    nextBtn.style.display = imgs.length > 1 ? '' : 'none';
   }
 
-  /* Abrir overlay */
-  const overlay = document.getElementById('product-modal');
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  // Info
+  document.getElementById('pmodal-category').textContent = p.categoria.toUpperCase();
+  document.getElementById('pmodal-title').textContent = p.nome;
+  document.getElementById('pmodal-price').textContent = `R$ ${p.preco.toFixed(2).replace('.', ',')}`;
+  document.getElementById('pmodal-desc').textContent = p.desc || '';
 
-  /* Swipe mobile */
-  initGallerySwipe();
+  // Detalhes
+  const detailsEl = document.getElementById('pmodal-details');
+  const rows = [];
+  if (p.material) rows.push(['MATERIAL', p.material]);
+  if (p.fit) rows.push(['CORTE', p.fit]);
+  if (p.verso) rows.push(['VERSÍCULO', p.verso]);
+  detailsEl.innerHTML = rows.map(([k, v]) => `
+    <div class="pmodal-detail-row">
+      <span>${k}</span><span>${v}</span>
+    </div>`).join('');
+  detailsEl.style.display = rows.length ? 'flex' : 'none';
+
+  // Tamanhos
+  const sizesGrid = document.getElementById('pmodal-sizes-grid');
+  const sizes = ['P', 'M', 'G', 'GG', 'XGG'];
+  sizesGrid.innerHTML = sizes.map(s =>
+    `<button class="size-btn ${!p.estoque ? 'unavailable' : ''}" data-size="${s}" onclick="selectSize(this)">${s}</button>`
+  ).join('');
+
+  // Botão comprar
+  const buyBtn = document.querySelector('.btn-pmodal-buy');
+  if (buyBtn) buyBtn.disabled = !p.estoque;
+
+  const overlay = document.getElementById('product-modal');
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
 }
 
-/** Fecha o modal de produto */
+function selectSize(btn) {
+  if (btn.classList.contains('unavailable')) return;
+  document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
 function closePModal() {
-  document.getElementById('product-modal').classList.remove('open');
+  document.getElementById('product-modal').style.display = 'none';
   document.body.style.overflow = '';
   currentProduct = null;
 }
 
-/** Fecha ao clicar no overlay (fora do box) */
 function closePModalOutside(e) {
   if (e.target.id === 'product-modal') closePModal();
 }
 
-/* ── Galeria de imagens ── */
-
-/** Renderiza a galeria de imagens principal + thumbnails + dots */
-function renderGallery(imgs) {
-  const mainImg = document.getElementById('gallery-main-img');
-  const thumbsEl = document.getElementById('gallery-thumbs');
-  const dotsEl   = document.getElementById('gallery-dots');
-
-  mainImg.src = imgs[0] || '';
-
-  /* Thumbnails */
-  thumbsEl.innerHTML = imgs.map((src, i) =>
-    `<img class="gallery-thumb ${i === 0 ? 'active' : ''}" src="${src}" alt="Ângulo ${i+1}"
-          onclick="goToGalleryImg(${i})" loading="lazy">`
-  ).join('');
-
-  /* Dots */
-  dotsEl.innerHTML = imgs.map((_, i) =>
-    `<button class="gallery-dot ${i === 0 ? 'active' : ''}" onclick="goToGalleryImg(${i})"
-             aria-label="Imagem ${i+1}"></button>`
-  ).join('');
-
-  /* Mostrar/esconder botões de nav se só 1 imagem */
-  const show = imgs.length > 1;
-  document.querySelector('.gallery-prev').style.display = show ? '' : 'none';
-  document.querySelector('.gallery-next').style.display = show ? '' : 'none';
-}
-
-/**
- * Vai para uma imagem específica da galeria.
- * @param {number} idx - índice da imagem
- */
-function goToGalleryImg(idx) {
-  if (!currentProduct) return;
-  const imgs    = currentProduct.imgs;
-  const mainImg = document.getElementById('gallery-main-img');
-
-  /* Fade out → troca → fade in */
-  mainImg.classList.add('fade');
-  setTimeout(() => {
-    currentImgIndex = (idx + imgs.length) % imgs.length;
-    mainImg.src = imgs[currentImgIndex];
-    mainImg.classList.remove('fade');
-  }, 220);
-
-  /* Atualizar thumbs e dots */
-  document.querySelectorAll('.gallery-thumb').forEach((t, i) =>
-    t.classList.toggle('active', i === currentImgIndex)
-  );
-  document.querySelectorAll('.gallery-dot').forEach((d, i) =>
-    d.classList.toggle('active', i === currentImgIndex)
-  );
-}
-
-/** Vai para a imagem anterior */
-function galleryPrev() { goToGalleryImg(currentImgIndex - 1); }
-
-/** Vai para a próxima imagem */
-function galleryNext() { goToGalleryImg(currentImgIndex + 1); }
-
-/** Swipe touch para navegar na galeria no mobile */
-function initGallerySwipe() {
-  const el = document.querySelector('.gallery-main');
-  if (!el) return;
-
-  let touchStartX = 0;
-
-  /* Remove listeners antigos para evitar duplicatas */
-  el.removeEventListener('touchstart', onTouchStart);
-  el.removeEventListener('touchend',   onTouchEnd);
-  el.addEventListener('touchstart', onTouchStart, { passive: true });
-  el.addEventListener('touchend',   onTouchEnd,   { passive: true });
-
-  function onTouchStart(e) { touchStartX = e.touches[0].clientX; }
-  function onTouchEnd(e) {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) < 40) return; /* Ignorar micro-swipes */
-    diff > 0 ? galleryNext() : galleryPrev();
-  }
-}
-
-/* ── Tamanhos no modal ── */
-
-/**
- * Seleciona um tamanho no modal de produto.
- * @param {string} size - tamanho selecionado
- */
-function selectSize(size) {
-  selectedSize = size;
-  document.querySelectorAll('.size-btn').forEach(btn => {
-    btn.classList.toggle('selected', btn.dataset.size === size);
-  });
-}
-
-/** Adiciona o produto ao carrinho a partir do modal de detalhes */
 function addFromModal() {
   if (!currentProduct) return;
-  if (!selectedSize) {
+  const selectedBtn = document.querySelector('.size-btn.selected');
+  if (!selectedBtn) {
     showToast('⚠ SELECIONE UM TAMANHO');
-    /* Animação de destaque nos botões de tamanho */
-    document.querySelectorAll('.size-btn').forEach(btn => {
-      btn.style.borderColor = 'rgba(255,80,80,0.7)';
-      setTimeout(() => { btn.style.borderColor = ''; }, 1500);
-    });
+    document.getElementById('pmodal-sizes-grid').style.outline = '1px solid rgba(255,100,100,0.5)';
+    setTimeout(() => {
+      const g = document.getElementById('pmodal-sizes-grid');
+      if (g) g.style.outline = '';
+    }, 2000);
     return;
   }
-
-  cart.push({ ...currentProduct, size: selectedSize, cartId: Date.now() + Math.random() });
+  const size = selectedBtn.getAttribute('data-size');
+  cart.push({ ...currentProduct, img: currentProduct.imgs ? currentProduct.imgs[0] : currentProduct.img, size, cartId: Date.now() + Math.random() });
   saveCart();
   updateCartUI();
-  showToast(`✓ ${currentProduct.nome} (${selectedSize}) ADICIONADO`);
+  showToast(`✓ ${currentProduct.nome} (${size}) ADICIONADO`);
   closePModal();
 }
 
+// Galeria navigation
+function galleryGoTo(index) {
+  if (!currentProduct) return;
+  const imgs = currentProduct.imgs || [currentProduct.img];
+  if (index < 0 || index >= imgs.length) return;
 
-/* ════════════════════════════════════════
-   7. CARRINHO
-════════════════════════════════════════ */
+  currentGalleryIndex = index;
+  const mainImg = document.getElementById('gallery-main-img');
+  mainImg.classList.add('fade');
+  setTimeout(() => {
+    mainImg.src = imgs[index];
+    mainImg.classList.remove('fade');
+  }, 180);
 
-/**
- * Adiciona produto ao carrinho a partir do card do catálogo.
- * @param {string} id - ID do produto
- */
+  document.querySelectorAll('.gallery-dot').forEach((d, i) => d.classList.toggle('active', i === index));
+  document.querySelectorAll('.gallery-thumb').forEach((t, i) => t.classList.toggle('active', i === index));
+}
+
+function galleryPrev() {
+  if (!currentProduct) return;
+  const len = (currentProduct.imgs || [currentProduct.img]).length;
+  galleryGoTo((currentGalleryIndex - 1 + len) % len);
+}
+
+function galleryNext() {
+  if (!currentProduct) return;
+  const len = (currentProduct.imgs || [currentProduct.img]).length;
+  galleryGoTo((currentGalleryIndex + 1) % len);
+}
+
+// ─── CARRINHO ───
 function addToCart(id) {
   const p = PRODUTOS.find(x => x.id === id);
   const sizeEl = document.getElementById(`size-${id}`);
@@ -505,158 +381,141 @@ function addToCart(id) {
 
   if (!size) {
     showToast('⚠ SELECIONE UM TAMANHO');
-    sizeEl.style.borderColor = 'rgba(255,80,80,0.6)';
-    setTimeout(() => { sizeEl.style.borderColor = ''; }, 1800);
+    if (sizeEl) {
+      sizeEl.style.borderColor = 'rgba(255,80,80,0.7)';
+      sizeEl.style.transition = 'border-color 0.2s';
+      setTimeout(() => { sizeEl.style.borderColor = ''; }, 2000);
+    }
     return;
   }
 
-  cart.push({ ...p, size, cartId: Date.now() + Math.random() });
+  const mainImg = p.imgs ? p.imgs[0] : (p.img || '');
+  cart.push({ ...p, img: mainImg, size, cartId: Date.now() + Math.random() });
   saveCart();
   updateCartUI();
   showToast(`✓ ${p.nome} (${size}) ADICIONADO`);
 
-  /* Feedback visual no botão */
-  const card = document.querySelector(`.card[data-id="${id}"]`);
+  const card = document.querySelector(`[data-id="${id}"]`);
   if (card) {
     const btn = card.querySelector('.btn-buy');
-    const original = btn.innerHTML;
-    btn.textContent = '✓ ADICIONADO';
-    btn.style.background = '#111';
-    btn.style.color = '#25D366';
-    setTimeout(() => {
-      btn.innerHTML = original;
-      btn.style.background = '';
-      btn.style.color = '';
-    }, 2000);
+    if (btn) {
+      const orig = btn.innerText;
+      btn.innerText = '✓ ADICIONADO';
+      btn.style.background = 'rgba(37,211,102,0.1)';
+      btn.style.borderColor = 'rgba(37,211,102,0.4)';
+      btn.style.color = '#25D366';
+      setTimeout(() => {
+        btn.innerText = orig;
+        btn.style.background = '';
+        btn.style.borderColor = '';
+        btn.style.color = '';
+      }, 2000);
+    }
   }
 }
 
-/**
- * Remove um item do carrinho pelo cartId único.
- * @param {number} cartId - ID único do item no carrinho
- */
 function removeFromCart(cartId) {
   cart = cart.filter(item => item.cartId !== cartId);
   saveCart();
   updateCartUI();
 }
 
-/** Persiste o carrinho no localStorage */
 function saveCart() {
-  localStorage.setItem('psw_cart_v5', JSON.stringify(cart));
+  try { localStorage.setItem('psw_cart_v5', JSON.stringify(cart)); } catch(e) {}
 }
 
-/** Atualiza toda a UI do carrinho (badge, lista, total) */
 function updateCartUI() {
   const countEl = document.getElementById('cart-count');
-  const listEl  = document.getElementById('cart-items-list');
+  const listEl = document.getElementById('cart-items-list');
   const totalEl = document.getElementById('cart-total');
 
-  /* Animação no badge */
   if (countEl) {
-    countEl.textContent = cart.length;
+    countEl.innerText = cart.length;
     countEl.style.transform = 'scale(1.5)';
     setTimeout(() => { countEl.style.transform = ''; }, 300);
   }
 
-  /* Lista vazia */
-  if (!cart.length) {
-    if (listEl) listEl.innerHTML = `
+  if (!listEl) return;
+
+  if (cart.length === 0) {
+    listEl.innerHTML = `
       <div class="cart-empty">
         <div class="cart-empty-icon">✝</div>
-        <p>SEU CARRINHO ESTÁ VAZIO</p>
-        <p style="font-size:11px;margin-top:4px;opacity:0.5;">ADICIONE ALGUM PRODUTO</p>
+        <p>CARRINHO VAZIO</p>
+        <p style="font-size:10px; letter-spacing:2px; margin-top:4px; opacity:0.6;">ADICIONE ALGUM PRODUTO</p>
       </div>`;
-    if (totalEl) totalEl.textContent = 'R$ 0,00';
+    if (totalEl) totalEl.innerText = 'R$ 0,00';
     return;
   }
 
-  /* Itens */
   let total = 0;
-  if (listEl) {
-    listEl.innerHTML = cart.map(item => {
-      total += item.preco;
-      return `
-        <div class="item-c">
-          <img class="item-c-img" src="${item.imgs[0]}" alt="${item.nome}"
-               onerror="this.style.display='none'" loading="lazy">
-          <div class="item-c-info">
-            <strong>${item.nome}</strong>
-            <small>TAM: ${item.size} &nbsp;·&nbsp; R$ ${fmt(item.preco)}</small>
-          </div>
-          <button class="btn-remove" onclick="removeFromCart(${item.cartId})" aria-label="Remover">✕</button>
-        </div>`;
-    }).join('');
-  }
+  listEl.innerHTML = cart.map(item => {
+    total += item.preco;
+    return `
+      <div class="item-c">
+        <img class="item-c-img" src="${item.img || ''}" alt="${item.nome}"
+          onerror="this.style.display='none'">
+        <div class="item-c-info">
+          <strong>${item.nome}</strong>
+          <small>TAM: ${item.size} &nbsp;·&nbsp; R$ ${item.preco.toFixed(2).replace('.', ',')}</small>
+        </div>
+        <button class="btn-remove" onclick="removeFromCart(${item.cartId})" aria-label="Remover">✕</button>
+      </div>`;
+  }).join('');
 
-  if (totalEl) totalEl.textContent = `R$ ${fmt(total)}`;
+  if (totalEl) totalEl.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
 }
 
-/** Abre/fecha o modal do carrinho */
 function toggleCart() {
-  const modal  = document.getElementById('cart-modal');
+  const modal = document.getElementById('cart-modal');
   const isOpen = modal.style.display === 'block';
-  modal.style.display   = isOpen ? 'none' : 'block';
+  modal.style.display = isOpen ? 'none' : 'block';
   document.body.style.overflow = isOpen ? '' : 'hidden';
 }
 
-/** Fecha o carrinho ao clicar fora */
 function closeCartOutside(e) {
   if (e.target.id === 'cart-modal') toggleCart();
 }
 
-/** Envia pedido pelo WhatsApp */
 function enviarZap() {
-  if (!cart.length) { showToast('⚠ CARRINHO VAZIO'); return; }
-
-  let msg = '🙏 *PEDIDO — PROPÓSITO STREETWEAR*\n\n';
+  if (cart.length === 0) {
+    showToast('⚠ CARRINHO ESTÁ VAZIO');
+    return;
+  }
+  let msg = '🙏 *PEDIDO — PROPÓSITO STREETWEAR*\n';
   msg += '*Fé em Movimento · Morada Nova/CE*\n';
-  msg += '─────────────────────────\n\n';
-
+  msg += '───────────────────────\n\n';
   cart.forEach((item, i) => {
-    msg += `${i + 1}. *${item.nome}*\n   Tamanho: ${item.size}\n   Valor: R$ ${fmt(item.preco)}\n\n`;
+    msg += `${i + 1}. *${item.nome}*\n`;
+    msg += `   Tamanho: ${item.size}\n`;
+    msg += `   Valor: R$ ${item.preco.toFixed(2).replace('.', ',')}\n\n`;
   });
-
   const total = cart.reduce((a, b) => a + b.preco, 0);
-  msg += '─────────────────────────\n';
-  msg += `*TOTAL: R$ ${fmt(total)}*\n\n`;
+  msg += '───────────────────────\n';
+  msg += `*TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*\n\n`;
   msg += '"Não me envergonho do Evangelho." — Rm 1:16 ✝';
-
   window.open(`https://wa.me/${WHATSAPP_NUM}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
-
-/* ════════════════════════════════════════
-   8. MODAL DE CONFIRMAÇÃO (limpar carrinho)
-   Substitui o confirm() nativo do browser
-════════════════════════════════════════ */
-
-/** Abre o modal de confirmação de limpeza */
+// ─── MODAL CONFIRMAÇÃO ───
 function promptClearCart() {
-  if (!cart.length) return;
+  if (cart.length === 0) { showToast('⚠ CARRINHO JÁ ESTÁ VAZIO'); return; }
   document.getElementById('confirm-modal').classList.add('open');
 }
 
-/** Fecha sem limpar */
 function closeConfirmModal() {
   document.getElementById('confirm-modal').classList.remove('open');
 }
 
-/** Confirma e limpa o carrinho */
 function confirmClearCart() {
   cart = [];
   saveCart();
   updateCartUI();
   closeConfirmModal();
-  showToast('🗑 CARRINHO LIMPO');
+  showToast('✓ CARRINHO LIMPO');
 }
 
-
-/* ════════════════════════════════════════
-   9. MENU MOBILE
-════════════════════════════════════════ */
-
-/** Toggle do menu hamburguer */
+// ─── MENU MOBILE ───
 function toggleMenu() {
   const nav = document.getElementById('nav-menu');
   const btn = document.getElementById('menu-toggle');
@@ -666,23 +525,17 @@ function toggleMenu() {
   document.body.style.overflow = isOpen ? '' : 'hidden';
 }
 
-/** Inicializa fechamento do menu ao clicar em link */
-function initNavLinks() {
-  document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-      document.getElementById('nav-menu').classList.remove('open');
-      document.getElementById('menu-toggle').classList.remove('active');
-      document.body.style.overflow = '';
-    });
-  });
+function closeMenuMobile() {
+  const nav = document.getElementById('nav-menu');
+  const btn = document.getElementById('menu-toggle');
+  if (nav.classList.contains('open')) {
+    nav.classList.remove('open');
+    btn.classList.remove('active');
+    document.body.style.overflow = '';
+  }
 }
 
-
-/* ════════════════════════════════════════
-   10. EFEITOS VISUAIS
-════════════════════════════════════════ */
-
-/** Adiciona classe "scrolled" ao header após 60px */
+// ─── HEADER SCROLL ───
 function initHeaderScroll() {
   const header = document.getElementById('header');
   window.addEventListener('scroll', () => {
@@ -690,22 +543,24 @@ function initHeaderScroll() {
   }, { passive: true });
 }
 
-/** Efeito parallax suave + animação de entrada do hero */
+// ─── HERO BG PARALLAX ───
 function initHeroBg() {
   const bg = document.querySelector('.hero-bg');
   if (!bg) return;
-  setTimeout(() => bg.classList.add('loaded'), 100);
+  setTimeout(() => bg.classList.add('loaded'), 80);
   window.addEventListener('scroll', () => {
-    bg.style.transform = `translateY(${window.scrollY * 0.25}px)`;
+    if (window.scrollY < window.innerHeight) {
+      bg.style.transform = `scale(1) translateY(${window.scrollY * 0.28}px)`;
+    }
   }, { passive: true });
 }
 
-/** Fade-in com Intersection Observer para seções */
-function initScrollFadeIn() {
-  const targets = document.querySelectorAll('.highlight-card, .about, .verse-banner, .footer');
+// ─── SCROLL ANIMATIONS ───
+function initScrollEffects() {
+  const targets = document.querySelectorAll('.highlight-card, .about, .verse-banner, .footer, .verse-strip');
   targets.forEach(el => el.classList.add('fade-in'));
 
-  const observer = new IntersectionObserver(entries => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
@@ -717,60 +572,30 @@ function initScrollFadeIn() {
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 }
 
-
-/* ════════════════════════════════════════
-   11. TOAST
-════════════════════════════════════════ */
-let toastTimer = null;
-
-/**
- * Exibe uma notificação temporária na base da tela.
- * @param {string} msg - texto da notificação
- */
+// ─── TOAST ───
+let toastTimer;
 function showToast(msg) {
   const toast = document.getElementById('toast');
   if (!toast) return;
-  toast.textContent = msg;
+  toast.innerText = msg;
   toast.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
 }
 
-
-/* ════════════════════════════════════════
-   12. ACESSIBILIDADE
-════════════════════════════════════════ */
-document.addEventListener('keydown', e => {
-  if (e.key !== 'Escape') return;
-
-  /* Fechar modal de produto */
-  if (document.getElementById('product-modal').classList.contains('open')) {
-    closePModal(); return;
+// ─── TECLADO ───
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const cartModal = document.getElementById('cart-modal');
+    if (cartModal.style.display === 'block') toggleCart();
+    const navMenu = document.getElementById('nav-menu');
+    if (navMenu.classList.contains('open')) closeMenuMobile();
+    if (document.getElementById('product-modal').style.display === 'flex') closePModal();
+    closeConfirmModal();
   }
-  /* Fechar modal de confirmação */
-  if (document.getElementById('confirm-modal').classList.contains('open')) {
-    closeConfirmModal(); return;
-  }
-  /* Fechar carrinho */
-  if (document.getElementById('cart-modal').style.display === 'block') {
-    toggleCart(); return;
-  }
-  /* Fechar menu mobile */
-  if (document.getElementById('nav-menu').classList.contains('open')) {
-    toggleMenu();
+  // Galeria com setas do teclado
+  if (document.getElementById('product-modal').style.display === 'flex') {
+    if (e.key === 'ArrowLeft') galleryPrev();
+    if (e.key === 'ArrowRight') galleryNext();
   }
 });
-
-
-/* ════════════════════════════════════════
-   UTILITÁRIOS
-════════════════════════════════════════ */
-
-/**
- * Formata número como preço em reais (ex: 89.90 → "89,90")
- * @param {number} n
- * @returns {string}
- */
-function fmt(n) {
-  return n.toFixed(2).replace('.', ',');
-}
